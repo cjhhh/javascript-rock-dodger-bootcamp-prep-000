@@ -23,7 +23,7 @@ function checkCollision(rock) {
     const rockRightEdge = rockLeftEdge + 20;
       if((rockLeftEdge < dodgerLeftEdge && rockRightEdge > dodgerLeftEdge) || (rockLeftEdge >= dodgerLeftEdge && rockRightEdge <= dodgerRightEdge) || (rockLeftEdge < dodgerRightEdge && rockRightEdge > dodgerRightEdge)){
  return true
-}
+}x
     else{
       return false
     }
@@ -73,7 +73,7 @@ GAME.appendChild(rock)
      else{
        delete(rock);
      }
-  }
+
 
   // We should kick of the animation of the rock around here
 

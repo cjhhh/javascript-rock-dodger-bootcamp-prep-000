@@ -50,7 +50,9 @@ GAME.appendChild(rock)
    * seems like a good pace.)
    */
   function moveRock(rock) {
-
+    if(checkCollision(rock)){
+      endGame();
+    }
 
     /**
      * If a rock collides with the DODGER,
@@ -61,11 +63,16 @@ GAME.appendChild(rock)
      * Otherwise, if the rock hasn't reached the bottom of
      * the GAME, we want to move it again.
      */
-
+      else if(checkCollision(rock) === false){
+        top = `${top += 2}px`
+      }
     /**
      * But if the rock *has* reached the bottom of the GAME,
      * we should remove the rock from the DOM
      */
+     else{
+       delete(rock);
+     }
   }
 
   // We should kick of the animation of the rock around here
@@ -85,6 +92,10 @@ GAME.appendChild(rock)
  * Finally, alert "YOU LOSE!" to the player.
  */
 function endGame() {
+clearInterval(gameInterval)
+  delete ROCKS
+  remove DODGER.removeEventListener('keydown', moveDodger);
+  alert("YOU LOSE!")
 }
 
 function moveDodger(e) {
@@ -96,22 +107,44 @@ function moveDodger(e) {
    * we've declared for you above.)
    * And be sure to use the functions declared below!
    */
+   if(e.which === LEFT_ARROW){
+   moveDodgerLeft();
+ }
+ if(e.which === RIGHT_ARROW){
+   moveDodgerRight();
+ }
 }
 
-function moveDodgerLeft() {
+function moveDodgerLeft(DODGER) {
   // implement me!
   /**
    * This function should move DODGER to the left
    * (mabye 4 pixels?). Use window.requestAnimationFrame()!
    */
+   var right = DODGER.style.right
+    right = `${right += 4}`
+    if(DODGER >= GAME_WIDTH){
+        window.requestAnimationFrame(DODGER)
+      DODGER = GAME_WIDTH
+    }
+    window.requestAnimationFrame(DODGER)
 }
 
-function moveDodgerRight() {
+function moveDodgerRight(DODGER) {
   // implement me!
   /**
    * This function should move DODGER to the right
    * (mabye 4 pixels?). Use window.requestAnimationFrame()!
    */
+   var left = DODGER.style.left
+    left = `${left += 4}`
+    if(DODGER >= GAME_WIDTH){
+        window.requestAnimationFrame(DODGER)
+      DODGER = GAME_WIDTH
+    }
+    window.requestAnimationFrame(DODGER)
+  }
+
 }
 
 /**

@@ -23,7 +23,7 @@ function checkCollision(rock) {
     const rockRightEdge = rockLeftEdge + 20;
       if((rockLeftEdge < dodgerLeftEdge && rockRightEdge > dodgerLeftEdge) || (rockLeftEdge >= dodgerLeftEdge && rockRightEdge <= dodgerRightEdge) || (rockLeftEdge < dodgerRightEdge && rockRightEdge > dodgerRightEdge)){
  return true
-}x
+}
     else{
       return false
     }
@@ -50,9 +50,9 @@ GAME.appendChild(rock)
    * seems like a good pace.)
    */
   function moveRock(rock) {
-    if(checkCollision(rock)){
+      if(checkCollision(rock)){
       endGame();
-    }
+      }
 
     /**
      * If a rock collides with the DODGER,
@@ -63,20 +63,20 @@ GAME.appendChild(rock)
      * Otherwise, if the rock hasn't reached the bottom of
      * the GAME, we want to move it again.
      */
-      else if(checkCollision(rock) === false){
-        top = `${top += 2}px`
-      }
+    else if(checkCollision(rock) === false){
+      top = `${top += 2}px`
+    }
     /**
      * But if the rock *has* reached the bottom of the GAME,
      * we should remove the rock from the DOM
      */
-     else{
+     if(rock >= GAME_HEIGHT){
        delete(rock);
      }
-
+  }
 
   // We should kick of the animation of the rock around here
-
+  window.requestAnimationFrame();
   // Add the rock to ROCKS so that we can remove all rocks
   // when there's a collision
   ROCKS.push(rock)
@@ -92,13 +92,11 @@ GAME.appendChild(rock)
  * Finally, alert "YOU LOSE!" to the player.
  */
 function endGame() {
-clearInterval(gameInterval)
+  clearInterval(gameInterval);
   delete ROCKS
-  remove DODGER.removeEventListener('keydown', moveDodger);
-  alert("YOU LOSE!")
 }
 
-function moveDodger(e) {
+function moveDodger() {
   // implement me!
   /**
    * This function should call `moveDodgerLeft()`
@@ -107,44 +105,22 @@ function moveDodger(e) {
    * we've declared for you above.)
    * And be sure to use the functions declared below!
    */
-   if(e.which === LEFT_ARROW){
-   moveDodgerLeft();
- }
- if(e.which === RIGHT_ARROW){
-   moveDodgerRight();
- }
 }
 
-function moveDodgerLeft(DODGER) {
+function moveDodgerLeft() {
   // implement me!
   /**
    * This function should move DODGER to the left
    * (mabye 4 pixels?). Use window.requestAnimationFrame()!
    */
-   var right = DODGER.style.right
-    right = `${right += 4}`
-    if(DODGER >= GAME_WIDTH){
-        window.requestAnimationFrame(DODGER)
-      DODGER = GAME_WIDTH
-    }
-    window.requestAnimationFrame(DODGER)
 }
 
-function moveDodgerRight(DODGER) {
+function moveDodgerRight() {
   // implement me!
   /**
    * This function should move DODGER to the right
    * (mabye 4 pixels?). Use window.requestAnimationFrame()!
    */
-   var left = DODGER.style.left
-    left = `${left += 4}`
-    if(DODGER >= GAME_WIDTH){
-        window.requestAnimationFrame(DODGER)
-      DODGER = GAME_WIDTH
-    }
-    window.requestAnimationFrame(DODGER)
-  }
-
 }
 
 /**

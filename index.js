@@ -76,7 +76,7 @@ GAME.appendChild(rock)
   }
 
   // We should kick of the animation of the rock around here
-  window.requestAnimationFrame();
+  window.requestAnimationFrame(rock);
   // Add the rock to ROCKS so that we can remove all rocks
   // when there's a collision
   ROCKS.push(rock)

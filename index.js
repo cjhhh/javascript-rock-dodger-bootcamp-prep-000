@@ -76,7 +76,7 @@ GAME.appendChild(rock)
   }
 
   // We should kick of the animation of the rock around here
-  window.requestAnimationFrame(rock);
+  window.requestAnimationFrame(moveRock);
   // Add the rock to ROCKS so that we can remove all rocks
   // when there's a collision
   ROCKS.push(rock)
@@ -93,7 +93,6 @@ GAME.appendChild(rock)
  */
 function endGame() {
   clearInterval(gameInterval);
-  delete ROCKS
 }
 
 function moveDodger() {
